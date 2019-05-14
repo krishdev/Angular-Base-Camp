@@ -1,0 +1,60 @@
+$bluish: rgba(54, 54, 194, 0.719);
+$lg-gray: #c9c3c3;
+
+@mixin btn-basic {
+    border: 0;
+    padding: .5em 1.5em;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+ul {
+    li {
+        color: blue;
+        @media (min-width: 520px) {
+            color: red;
+        }
+        a {
+            display: inline-block;
+            text-decoration: underline;
+            color: $bluish;
+            &:before {
+                content: "Hello ";
+                display: inline-block;
+            }
+            &:after {
+                content:".";
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.o-btn {
+    @include btn-basic();
+    &--orange {
+        @include btn-basic();
+        background-color: orange;
+        color: #fff;
+    }
+    &:hover {
+        color: $bluish;
+        background-color: #fff;
+    }
+}
+
+.o-form {
+    &--input {
+        &:active {
+            border: 1px solid $bluish;            
+        }
+        &:focus {
+            border: 1px solid red;
+        }
+        &:vistied {
+            border: 1px solid orange;            
+        }
+    }
+    
+}

@@ -1,0 +1,18 @@
+<form class="o-form" name="studentForm" novalidate (ngSubmit)="onSubmit()" autocomplete="off">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" [(ngModel)]="email" (change)="validateFields()" (input)="validations.email=true" autocomplete="off" id="exampleInputEmail1" name="email" placeholder="Enter email">
+    <div class="o-error" *ngIf="isFormSubmitted">
+      <p *ngIf="!validations.email">Email is required.</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="phnNo">Phone Number</label>
+    <input type="tel" class="form-control" id="phnNo" [(ngModel)]="phoneNumber" (change)="validateFields()" (input)="validations.phoneNumber=true" name="phoneNumber" placeholder="+1(987)-654-3210">
+    <div class="o-error" *ngIf="isFormSubmitted">
+      <p *ngIf="!validations.phoneNumber">Phone number is required.</p>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

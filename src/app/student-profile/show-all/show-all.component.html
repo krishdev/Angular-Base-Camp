@@ -1,0 +1,41 @@
+<div>
+  <div class="o-table-filter">
+    <label>Filter By Age</label>
+    <select [(ngModel)]="ageFilter" (change)="filterByAge()">
+      <option disabled value="">Select to filter</option>
+      <option value="0">18-25</option>
+      <option value="1">26-35</option>
+      <option value="2">All</option>
+    </select>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th class="o-table__head o-table__head--sort" [ngClass]="toggleAsc.name ? 'head-rotate': ''" (click)="sortBy('Name')">Name</th>
+        <th class="o-table__head o-table__head--sort" [ngClass]="toggleAsc.email ? 'head-rotate': ''" (click)="sortBy('Email')">Email</th>
+        <th class="o-table__head o-table__head--sort" [ngClass]="toggleAsc.phone ? 'head-rotate': ''" (click)="sortBy('Phone')">Phone</th>
+        <th class="o-table__head o-table__head--sort" [ngClass]="toggleAsc.age ? 'head-rotate': ''" (click)="sortBy('Age')">Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of allUsers">
+        <td>{{user.name}}</td>
+        <td [textContent]="user.email"></td>
+        <td [innerHTML]="user.phone"></td>
+        <td [innerHTML]="user.age"></td>
+        <td>
+          <div class="o-btn-group">
+              <button class="o-btn o-btn--orange" (click)="onView(user.id)">View</button>
+              <button class="o-btn">Edit</button>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="hasDataLoaded==false">
+        <td colspan="4">Loading data please wait...</td>
+      </tr>
+      <tr *ngIf="hasDataLoaded && allUsers.length === 0">
+        <td colspan="4">No Data found</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

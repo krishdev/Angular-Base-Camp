@@ -1,0 +1,21 @@
+.o-table__head {
+    position: relative;
+}
+.o-table__head--sort {
+    &:after {
+        content: "^";
+        padding-right: .5em;
+        font-size: 1em;
+        transform: rotate(180deg);
+        display: inline-block;
+        cursor: pointer;
+        font-family: cursive;
+        position: absolute;
+        bottom: 4px;
+    }
+    &.head-rotate::after {
+        transform: rotate(0deg);
+        bottom: -5px;
+        padding-left: .5em;
+    }
+}

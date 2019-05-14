@@ -1,0 +1,17 @@
+$o-btn: '.o-btn';
+#{$o-btn} {
+    @include btn;
+    &:hover {
+        opacity: 0.8;
+    }
+    &--orange {
+        background-color: rgba(197, 136, 21, 0.924);
+    }
+}
+#{$o-btn}-group {
+    display: flex;
+    flex-wrap: wrap;
+    #{$o-btn} {
+        margin-right: 0.5em;
+    }
+}

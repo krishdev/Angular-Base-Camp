@@ -1,0 +1,19 @@
+$o-form: '.o-form';
+$o-error: '.o-error';
+
+#{$o-form} {
+    padding: 0.5em;
+    &-wrapper {
+        margin-bottom: 1em;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &-control {
+        @include input;
+    }
+}
+
+#{$o-error} {
+    color: red;
+}

@@ -1,0 +1,16 @@
+@mixin btn {
+    padding: .5em 1.2em;
+    background-color: $blue;
+    color: $white;
+    border: 0;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+@mixin input {
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    padding: .375rem .75rem;
+}
