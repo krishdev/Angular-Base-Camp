@@ -2,7 +2,22 @@ $o-form: '.o-form';
 $o-error: '.o-error';
 
 #{$o-form} {
-    padding: 0.5em;
+    padding: 1.5em;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    width: 70%;
+    &-field_wrapper {
+        display: flex;
+        flex-flow: column nowrap;
+        margin-bottom: .5em;
+        input {
+            border: 1px solid #dadada;
+            height: 36px;
+            width: 100%;
+            padding: 1em;
+            border-radius: 4px;
+        }
+    }
     &-wrapper {
         margin-bottom: 1em;
         &:last-child {
@@ -11,6 +26,10 @@ $o-error: '.o-error';
     }
     &-control {
         @include input;
+    }
+    &__btn-group {
+        display: flex;
+        justify-content: space-between;
     }
 }
 

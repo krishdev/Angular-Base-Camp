@@ -19,7 +19,13 @@ export class EditThisProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder
-  ) { }
+  ) { 
+    this.route.params.subscribe(
+      params=>{
+        this.thisUserId = parseInt(params['userid']);
+      }
+    )
+  }
 
   ngOnInit() {
     if(this.allUserService.hasUserDataLoaded) {
@@ -40,14 +46,35 @@ export class EditThisProfileComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       name: [ this.user.name, Validators.required],
       username: [ this.user.username, Validators.required],
-      email: [ this.user.email, [Validators.required, Validators.email]],
+      email: [ this.user.email, [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
       phone: [ this.user.phone, [Validators.required, Validators.minLength(8)]],
-      website: [ this.user.website, [Validators.required]]
-    })
+      website: [ this.user.website, [Validators.required, Validators.pattern(/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/)]
+          ]    })
+  }
+
+
+  get f() {
+    return this.userForm.controls;
   }
   
   editUser() {
+    if(this.userForm.invalid===false) {
+      let allUserData = this.allUserService.getAllUsers();
+      for(let i = 0; i < allUserData.length ; i++) {
+        if(this.user.id === allUserData[i].id) {
+          allUserData[i].email = this.userForm.value.email;
+          allUserData[i].phone = this.userForm.value.phone;
+          allUserData[i].website = this.userForm.value.website;
+          break;
+        }
+      }
+      this.allUserService.updateUsersData(allUserData);
+      this.router.navigate(['/profiles/view-all/', this.thisUserId]);
+    }
+  }
 
+  resetValues() {
+    this.userForm.reset();
   }
 
   goToViewAllPage() {
@@ -56,6 +83,18 @@ export class EditThisProfileComponent implements OnInit {
 
   viewThisUser(id: number) {
     this.router.navigate(['/profiles/view-all/', id]);
+  }
+
+  validateWebsiteUrl(group: FormGroup) {
+    let isValid = group.controls.website.value.match(/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+    if(isValid) {
+      return group.controls.website.setErrors(null);
+    } else {
+      return group.controls.website.setErrors({
+        websiteNotValid: true
+      })
+    }
+    
   }
 
 }

@@ -24,28 +24,18 @@ export class ViewThisProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
     let allusers: any = [];
     if(this.allUserService.hasUserDataLoaded) {
       allusers = this.allUserService.getAllUsers();
-      this.findTheCurrentUser(allusers);
+      this.user = this.allUserService.findThisUserById(this.thisUserId);
     } else {
       this.allUserService.getAllUsersFromApi().subscribe(
         res => {
           allusers = res;
-          this.findTheCurrentUser(allusers);
+          this.user = this.allUserService.findThisUserById(this.thisUserId);
         }
       )
     }    
-  }
-
-  findTheCurrentUser(allusers) {
-    for(let i = 0; i < allusers.length ; i++) {
-      if(allusers[i].id === this.thisUserId) {
-        this.user = allusers[i];
-        break;
-      }
-    }
   }
 
 

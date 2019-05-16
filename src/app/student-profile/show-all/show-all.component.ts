@@ -22,21 +22,26 @@ export class ShowAllComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const url = "https://jsonplaceholder.typicode.com/users";
     //fetch all users
     this.hasDataLoaded = false;
 
-    this.allUserService.getAllUsersFromApi().subscribe(
-      res => {
-        this.hasDataLoaded = true;
-        this.allUsers = res;
-        this.allUsersUnTouched = res;
-      },
-      err => {
-        console.log("errors");
-        console.log(err)
-      }
-    )
+    if(this.allUserService.hasUserDataLoaded) {
+      this.allUsers = this.allUserService.getAllUsers();
+      this.allUsersUnTouched = this.allUserService.getAllUsers();
+      this.hasDataLoaded = true;
+    } else {
+      this.allUserService.getAllUsersFromApi().subscribe(
+        res => {
+          this.hasDataLoaded = true;
+          this.allUsers = res;
+          this.allUsersUnTouched = res;
+        },
+        err => {
+          console.log("errors");
+          console.log(err)
+        }
+      )
+    }
 
   }
 

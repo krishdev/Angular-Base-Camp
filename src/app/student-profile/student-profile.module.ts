@@ -7,14 +7,15 @@ import { EditThisProfileComponent } from './edit-this-profile/edit-this-profile.
 import { ProfileRoutingModule } from './profile-routing.module';
 import { GetAllUsersService } from '../appcommon/services/getAllUsers.service';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ShowAllComponent, ViewThisProfileComponent, EditThisProfileComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ GetAllUsersService ]
 })

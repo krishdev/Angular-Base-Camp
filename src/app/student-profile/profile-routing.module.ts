@@ -7,7 +7,8 @@ import { EditThisProfileComponent } from './edit-this-profile/edit-this-profile.
 const routes: Routes = [
   { path: '', redirectTo: 'view-all', pathMatch: 'full' },
   { path: 'view-all', component: ShowAllComponent },
-  { path: 'view-all/:userid', component: ViewThisProfileComponent }
+  { path: 'view-all/:userid', component: ViewThisProfileComponent },
+  { path: 'view-all/edit/:userid', component: EditThisProfileComponent }
   
 ];
 

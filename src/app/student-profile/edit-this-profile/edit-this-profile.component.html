@@ -1,5 +1,42 @@
 <section class="edit-user">
-  <form>
-    
+  <div class="o-btn-link">
+    <a [routerLink]="['/profiles/view-all/']">View all users</a>
+  </div>
+  <form [formGroup]="userForm" novalidate (ngSubmit)="editUser()" class="o-form" autocomplete="off">
+      <div class="o-form__wrapper" *ngIf="userForm">
+        <div class="o-form-field_wrapper">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" formControlName="email">
+          <div class="o-error" *ngIf="f.email.errors">
+            <p *ngIf="f.email.errors.required; then show_required else show_email_invalid">This is ignored.</p>
+            <ng-template #show_required>
+              <p>Email is required.</p>
+            </ng-template>
+            <ng-template #show_email_invalid>
+              <p *ngIf="f.email.errors.pattern">Email is invalid.</p>
+            </ng-template>
+          </div>
+        </div>
+        <div class="o-form-field_wrapper">
+          <label for="email">Phone Number</label>
+          <input type="tel" id="phone" name="phone" formControlName="phone">
+          <div class="o-error" *ngIf="f.phone.errors">
+            <p *ngIf="f.phone.errors.required">Phone Number is required.</p>
+            <p *ngIf="f.phone.errors.minlength">Phone Number should contain atleast 8 characters.</p>
+          </div>
+        </div>
+        <div class="o-form-field_wrapper">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="website" formControlName="website">
+          <div class="o-error" *ngIf="f.website.errors">
+            <p *ngIf="f.website.errors.required">Website is required.</p>
+            <p *ngIf="f.website.errors.pattern">Website is not valid.</p>
+          </div>
+        </div>
+        <div class="o-form__btn-group">
+          <button type="submit" class="o-btn">Edit</button>
+          <button type="button" class="o-btn o-btn--orange" (click)="resetValues()">Cancel</button>
+        </div>
+      </div>
   </form>
 </section>
