@@ -1,0 +1,31 @@
+<section class="c-signon--register">
+    <h2>Log In</h2>
+    <div class="o-error">
+      {{errorMessage}}
+    </div>
+    <h2>
+      {{successMessage}}
+    </h2>
+    <form [formGroup]="loginForm" novalidate (ngSubmit)="loginUser()" class="o-form" autocomplete="off">
+      <div class="o-form__wrapper">
+        <div class="o-form-field_wrapper">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" formControlName="email">
+          <div class="o-error" *ngIf="f.email.errors && isFormSubmitted">
+            <p *ngIf="f.email.errors.required">Email is required.</p>        
+          </div>
+        </div>
+        <div class="o-form-field_wrapper">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" formControlName="password">
+          <div class="o-error" *ngIf="f.password.errors && isFormSubmitted">
+            <p *ngIf="f.password.errors.required">Password is required.</p>
+          </div>
+        </div>
+        <div class="o-form__btn-group">
+          <button type="submit" class="o-btn">Login</button>
+          <button type="button" class="o-btn o-btn--orange" (click)="resetValues()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </section>

@@ -1,0 +1,66 @@
+$c-name: '.o-banner';
+
+#{$c-name} {
+    height: 250px;
+    background-color: #073763;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    color: $white;
+    &--bluish {
+        background-color: #21D4FD;
+        background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+        flex-flow: column nowrap;
+        text-align: center;
+        p {
+            font-size: .8em;
+        
+        }
+    }
+}
+
+.c-Home {
+    width: 70%;
+    margin: 0 auto;
+    padding: 2em;
+    h3 {
+        text-align: center;
+    }
+    p {
+        color: $dark-gray;
+        font-size: .8em;
+        text-align: center;
+    }
+}
+
+.c-layout__three-column {
+    display: flex;
+    justify-content: start;
+    flex-flow: column nowrap;
+    margin-top: 2em;    
+    @media (min-width: 760px) {
+        justify-content: space-between;
+        flex-flow: row wrap;
+    }
+    &>div {        
+        box-sizing: border-box;
+        align-items: center;
+        text-align: center;
+        border: 1px solid #dadada;
+        border-radius: 4px;
+        padding: .8em;
+        margin-bottom: 1em;
+        @media (min-width: 760px) {
+            width: 31%;
+            margin-bottom: 0;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+        &>p {
+            text-align: justify;
+            margin-top: 1em;        
+        }
+    }
+}

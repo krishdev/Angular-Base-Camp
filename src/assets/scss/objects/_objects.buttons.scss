@@ -10,8 +10,6 @@ $o-btn: '.o-btn';
 }
 #{$o-btn}-group {
     display: flex;
-    flex-wrap: wrap;
-    #{$o-btn} {
-        margin-right: 0.5em;
-    }
+    flex-flow: row wrap;
+    justify-content: space-between;
 }

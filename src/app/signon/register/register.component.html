@@ -1,17 +1,54 @@
 <section class="c-signon--register">
-  <form class="o-form">
-    <div class="o-form-wrapper">
-      <label>
-        <input type="text" class="o-form-control">
-      </label>
-    </div>
-    <div class="o-form-wrapper">
-      <label>
-        <input type="text" class="o-form-control">
-      </label>
-    </div>
-    <div class="o-form-wrapper">
-      <button type="submit" class="o-btn o-btn--blue">Register</button>
+  <h2>Register</h2>
+  <div class="o-error">
+    {{errorMessage}}
+  </div>
+  <h2>
+    {{successMessage}}
+  </h2>
+  <form [formGroup]="registerForm" novalidate (ngSubmit)="registerUser()" class="o-form" autocomplete="off">
+    <div class="o-form__wrapper">
+      <div class="o-form-field_wrapper">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" formControlName="email">
+        <div class="o-error" *ngIf="f.email.errors && isFormSubmitted">
+          <p *ngIf="f.email.errors.required; then show_required else show_email_invalid">This is ignored.</p>
+          <ng-template #show_required>
+            <p>Email is required.</p>
+          </ng-template>
+          <ng-template #show_email_invalid>
+            <p *ngIf="f.email.errors.pattern">Email is invalid.</p>
+          </ng-template>
+        </div>
+      </div>
+      <div class="o-form-field_wrapper">
+        <label for="email">Phone Number</label>
+        <input type="tel" id="phone" name="phone" formControlName="phone">
+        <div class="o-error" *ngIf="f.phone.errors && isFormSubmitted">
+          <p *ngIf="f.phone.errors.required">Phone Number is required.</p>
+          <p *ngIf="f.phone.errors.minlength">Phone Number should contain atleast 8 characters.</p>
+        </div>
+      </div>
+      <div class="o-form-field_wrapper">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" formControlName="password">
+        <div class="o-error" *ngIf="f.password.errors && isFormSubmitted">
+          <p *ngIf="f.password.errors.required">Password is required.</p>
+          <p *ngIf="f.password.errors.minlength">Password is should atleast contain 6 characters.</p>
+        </div>
+      </div>
+      <div class="o-form-field_wrapper">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword">
+        <div class="o-error" *ngIf="f.confirmPassword.errors && isFormSubmitted">
+          <p *ngIf="f.confirmPassword.errors.required">Confirm Password is required.</p>
+          <p *ngIf="f.confirmPassword.errors.notSame">Password should match with Confirm Password.</p>
+        </div>
+      </div>
+      <div class="o-form__btn-group">
+        <button type="submit" class="o-btn">Register</button>
+        <button type="button" class="o-btn o-btn--orange" (click)="resetValues()">Cancel</button>
+      </div>
     </div>
   </form>
 </section>

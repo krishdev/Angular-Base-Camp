@@ -1,18 +1,26 @@
-<form class="o-form" name="studentForm" novalidate (ngSubmit)="onSubmit()" autocomplete="off">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" [(ngModel)]="email" (change)="validateFields()" (input)="validations.email=true" autocomplete="off" id="exampleInputEmail1" name="email" placeholder="Enter email">
-    <div class="o-error" *ngIf="isFormSubmitted">
-      <p *ngIf="!validations.email">Email is required.</p>
+<app-header></app-header>
+<div class="o-banner">
+    I am UI developer &#123; <span>&nbsp;{{toggleTech}}&nbsp;</span> &#125;
+</div>
+<section class="c-Home">
+    <h3>An intro to my portfolio.</h3>
+    <p>Home is the common landing page, along with this there is a <a [routerLink]="['/signon/login']"><b>Login</b></a> and <a [routerLink]="['/signon/register']"><b>Registeration</b></a> page which shows the example for form validation and real time rest api call with 3rd party vendor. Once registered or logged in will be redirected to <a [routerLink]="['/profiles/view-all/']"><b>my profile</b></a>page.</p>
+    <div class="c-layout__three-column">
+        <div class="c-col1">
+            <h5>Form Validation</h5>
+            <p>Using FormGroup, FormBuilder, inbuilt Validators methods and custom validation function acheived validating forms fields. Used in Login, Registration and Edit User pages. </p>
+        </div>
+        <div class="c-col2">
+            <h5>Services / Directives / Rest-API</h5>
+            <p>Used directives to animate few text fields and labels to transform between as placeholder and labels. Also used common service functions and models to store, retrieve and edit data and use them in multiple components without making the api call again and again. </p>
+        </div>
+        <div class="c-col3">
+            <h5>Router /  CanActivate</h5>
+            <p>Not any user can see the profiles page which performs the CRUD operation in multiple child pages. Only registered or logged in user has the access to see profiles page.</p>
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="phnNo">Phone Number</label>
-    <input type="tel" class="form-control" id="phnNo" [(ngModel)]="phoneNumber" (change)="validateFields()" (input)="validations.phoneNumber=true" name="phoneNumber" placeholder="+1(987)-654-3210">
-    <div class="o-error" *ngIf="isFormSubmitted">
-      <p *ngIf="!validations.phoneNumber">Phone number is required.</p>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
+</section>
+<div class="o-banner o-banner--bluish">
+    <div>My github profile <<a href="https://www.github.com/" target="_blank">your profile name</a>>.</div>
+    <p>You can reach me through email, <a href="mailto:youremailid@domain.com">youremailid@domain.com.</a></p>
+</div>

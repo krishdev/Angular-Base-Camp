@@ -1,0 +1,36 @@
+$c-nav: '.c-nav';
+
+.c-Site {
+    &-logo {
+        padding: .5em .8em;
+        border: 1px solid $white;
+    }
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1em 1.2em;
+        background-color: $blue;
+        color: $white;
+        a {
+            color: $white;
+            transition: all .3s ease;
+            &:hover {
+                color: $lg-gray;
+                text-decoration: none;
+            }
+        }
+        #{$c-nav} {
+            ul {
+                list-style: none;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 0;
+                li {
+                    padding: 0 1em;
+                }
+            }
+        }
+    }
+}

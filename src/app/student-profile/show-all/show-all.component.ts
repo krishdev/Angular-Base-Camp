@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GetAllUsersService } from '../../appcommon/services/getAllUsers.service';
+import { GetAllUsersService, CredentialsService } from '../../appcommon/services/index.services';
 
 
 @Component({
@@ -18,6 +18,7 @@ export class ShowAllComponent implements OnInit {
 
   constructor(
     private allUserService: GetAllUsersService,
+    private credentialService: CredentialsService,
     private router: Router
   ) { }
 
@@ -86,6 +87,10 @@ export class ShowAllComponent implements OnInit {
       }
     });
     this.allUsers = tempUsers;
+  }
+
+  logout() {
+    this.credentialService.logoutUser();
   }
 
 }

@@ -1,3 +1,18 @@
-<p>
-  header works!
-</p>
+<header class="c-Site">
+  <nav>
+    <a href="#" class="c-Site-logo">AT</a>
+    <div class="c-nav">
+      <ul>
+        <li>
+          <a [routerLink]="['/home']">Home</a>
+        </li>
+        <li>
+          <a [routerLink]="['/signon/login']">Login</a>
+        </li>
+        <li>
+          <a [routerLink]="['/signon/register']">Register</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

@@ -1,3 +1,6 @@
+.o-table {
+    width: 100%;
+}
 .o-table__head {
     position: relative;
 }
@@ -17,5 +20,19 @@
         transform: rotate(0deg);
         bottom: -5px;
         padding-left: .5em;
+    }
+}
+.o-table-filter {
+    display: flex;
+    justify-content: space-between;
+        
+    label {
+        margin-right: .5em;
+    }
+
+    select {
+        border: 1px solid #dadada;
+        border-radius: 4px;
+        padding: .3em 1em;
     }
 }

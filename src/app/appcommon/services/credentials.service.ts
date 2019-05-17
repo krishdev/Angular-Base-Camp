@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Users } from '../models/users.models';
+import { map } from 'rxjs/operators' ;
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,10 @@ export class CredentialsService {
 
   baseUrl: string = 'https://reqres.in/api/';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   registerUserUrl = 'https://reqres.in/api/register';
   loginUserUrl = 'https://reqres.in/api/login';
@@ -46,4 +51,43 @@ export class CredentialsService {
     params = params.append('per_page', 5);
     return this.http.request('get', this.baseUrl + 'users', {params});
   }
+
+  public registerUserApi (email: string, password: string) {
+    return this.http.post(this.registerUserUrl, {email, password}).pipe(
+      map(
+        (res: any)=>{
+          // setting token in local storage;
+          localStorage.setItem('token', res.token);
+        }
+      )
+    )
+  }
+
+  public loginUserApi (email: string, password: string) {
+    return this.http.post(this.loginUserUrl, {email, password}).pipe(
+      map(
+        (res: any)=>{
+          // setting token in local storage;
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['profiles']);
+        }
+      )
+    )
+  }
+
+  public isTokenValid () {
+
+    let isTokenAvailable: boolean = false;
+
+    isTokenAvailable = localStorage.getItem('token') ? true : false ;
+
+    return isTokenAvailable;
+
+  }
+
+  public logoutUser(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/signon/login']);
+  }
+
 }

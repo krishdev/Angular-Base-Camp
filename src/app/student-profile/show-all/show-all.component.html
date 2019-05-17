@@ -1,14 +1,19 @@
-<div>
+<div class="c-Show-all">
   <div class="o-table-filter">
-    <label>Filter By Age</label>
-    <select [(ngModel)]="ageFilter" (change)="filterByAge()">
-      <option disabled value="">Select to filter</option>
-      <option value="0">18-25</option>
-      <option value="1">26-35</option>
-      <option value="2">All</option>
-    </select>
+    <div>
+        <label>Filter By Age</label>
+        <select [(ngModel)]="ageFilter" (change)="filterByAge()">
+          <option disabled value="">Select to filter</option>
+          <option value="0">18-25</option>
+          <option value="1">26-35</option>
+          <option value="2">All</option>
+        </select>
+    </div>
+    <div>
+      <button type="button" class="o-btn" (click)="logout()">Logout</button>
+    </div>
   </div>
-  <table>
+  <table class="o-table">
     <thead>
       <tr>
         <th class="o-table__head o-table__head--sort" [ngClass]="toggleAsc.name ? 'head-rotate': ''" (click)="sortBy('Name')">Name</th>

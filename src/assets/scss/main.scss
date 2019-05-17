@@ -1,6 +1,9 @@
 @import './settings/global.variables';
 @import './elements/elements.common';
 @import './global/mixins.elements';
+@import './objects/objects.nav';
 @import './objects/objects.buttons';
 @import './objects/objects.form';
 @import './objects/objects.table';
+@import './components/components.home';
+@import './components/components.registration';
